@@ -7,12 +7,18 @@
 
 import Foundation
 
+import RxCocoa
+import RxDataSources
+
 protocol FriendsViewModelInput {
-    func setTheCase(theCase: Sceniaros)
+    func setTheCase(theCase: Sceniaro)
+    func loadConents()
 }
 
 protocol FriendsViewModelOutput {
-    var theCase: Sceniaros { get }
+    var error: PublishRelay<Error> { get }
+    var man: PublishRelay<Man> { get }
+    var items: Driver<[MainSectionModel]> { get }
 }
 
 protocol FriendsViewModelType {
@@ -24,9 +30,45 @@ class FriendsViewModel: FriendsViewModelType, FriendsViewModelInput, FriendsView
     var inputs: FriendsViewModelInput { self }
     var outputs: FriendsViewModelOutput { self }
     
-    var theCase: Sceniaros = .NoFriends
+    let error: PublishRelay<Error> = .init()
+    let man: PublishRelay<Man> = .init()
+    var items: Driver<[MainSectionModel]> { itemsRelay.asDriver() }
     
-    func setTheCase(theCase: Sceniaros) {
+    private let itemsRelay: BehaviorRelay<[MainSectionModel]> = .init(value: [])
+    private var theCase: Sceniaro = .NoFriends
+    private var friends: [Friend] = []
+    
+    func setTheCase(theCase: Sceniaro) {
         self.theCase = theCase
+    }
+    
+    func loadConents() {
+        makeCellModel()
+    }
+    
+    private func makeCellModel() {
+        var titleSectionModels: [BaseCellModel] = []
+        var contentSectionModels: [BaseCellModel] = []
+        
+        let sections: [MainSectionModel] = [.titleSection(titleSectionModels), .contentSection(contentSectionModels)]
+        
+        itemsRelay.accept(sections)
+    }
+}
+
+enum MainSectionModel: SectionModelType {
+    case titleSection(_ cellModels: [BaseCellModelProtocol])
+    case contentSection(_ cellModels: [BaseCellModelProtocol])
+    
+    var items: [BaseCellModelProtocol] {
+        switch self {
+        case let .titleSection(cellModels),
+            let .contentSection(cellModels):
+            return cellModels
+        }
+    }
+    
+    init(original: MainSectionModel, items: [BaseCellModelProtocol]) {
+        self = original
     }
 }

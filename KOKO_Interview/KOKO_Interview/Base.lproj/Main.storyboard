@@ -58,22 +58,6 @@
             </objects>
             <point key="canvasLocation" x="1064.885496183206" y="-2.1126760563380285"/>
         </scene>
-        <!--Friends View Controller-->
-        <scene sceneID="xRG-DV-PxO">
-            <objects>
-                <viewController id="sgh-A6-21Y" customClass="FriendsViewController" customModule="KOKO_Interview" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kBb-n5-F3Z">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="29F-qX-Wn1"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="gc5-9m-bpl"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zyn-0P-4UX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1911" y="-2"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="lD0-25-ywm">
             <objects>
