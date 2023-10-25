@@ -1,24 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rb2-k7-dqp">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="KOKO_Interview" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ctk-rt-SCN">
+                                <rect key="frame" x="158.66666666666666" y="384" width="76" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="無好友"/>
+                                <connections>
+                                    <action selector="noFriend:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yi9-oC-lzJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhV-1u-Ecs">
+                                <rect key="frame" x="149.66666666666666" y="443" width="94" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="只有好友"/>
+                                <connections>
+                                    <action selector="onlyFriends:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S1A-U5-ryx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h01-l2-mOG">
+                                <rect key="frame" x="141" y="502" width="111" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="好友含邀請"/>
+                                <connections>
+                                    <action selector="friendsInvitation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z6u-Iy-HvB"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="h01-l2-mOG" firstAttribute="top" secondItem="lhV-1u-Ecs" secondAttribute="bottom" constant="24" id="6DW-DK-aIb"/>
+                            <constraint firstItem="Ctk-rt-SCN" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="A1d-JB-AKo"/>
+                            <constraint firstItem="lhV-1u-Ecs" firstAttribute="top" secondItem="Ctk-rt-SCN" secondAttribute="bottom" constant="24" id="MqF-UU-ZpU"/>
+                            <constraint firstItem="lhV-1u-Ecs" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="XnF-A1-lbi"/>
+                            <constraint firstItem="h01-l2-mOG" firstAttribute="centerX" secondItem="lhV-1u-Ecs" secondAttribute="centerX" id="l5x-mX-MNz"/>
+                            <constraint firstItem="lhV-1u-Ecs" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="tX8-Kp-uLS"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="XDC-k9-1KX"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1064.885496183206" y="-2.1126760563380285"/>
+        </scene>
+        <!--Friends View Controller-->
+        <scene sceneID="xRG-DV-PxO">
+            <objects>
+                <viewController id="sgh-A6-21Y" customClass="FriendsViewController" customModule="KOKO_Interview" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kBb-n5-F3Z">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="29F-qX-Wn1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gc5-9m-bpl"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zyn-0P-4UX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1911" y="-2"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lD0-25-ywm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Rb2-k7-dqp" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5rC-jR-kUm">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <navigationBarAppearance key="scrollEdgeAppearance">
+                            <color key="backgroundColor" red="0.9882352941176471" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </navigationBarAppearance>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="irp-xC-0l8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q5S-FW-Whj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138.1679389312977" y="-2.1126760563380285"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
