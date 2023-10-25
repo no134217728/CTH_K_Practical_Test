@@ -1,0 +1,23 @@
+disabled_rules:
+  - trailing_whitespace
+  - orphaned_doc_comment
+  - identifier_name
+  - function_body_length
+  - type_body_length
+  - file_length
+
+excluded:
+  - KeychainAccess
+  - SnapKit
+  - lottie-ios-master
+
+line_length:
+  warning: 120
+  ignores_function_declarations: true
+  ignores_comments: true
+  ignores_interpolated_strings: true
+  ignores_urls: true
+
+large_tuple:
+  warning: 3
+  error: 5
