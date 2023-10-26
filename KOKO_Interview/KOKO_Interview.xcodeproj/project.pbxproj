@@ -43,6 +43,7 @@
 		D28B90E22AE9118000AF8A0A /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B90E12AE9118000AF8A0A /* SearchCell.swift */; };
 		D28B90E42AE9118F00AF8A0A /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B90E32AE9118F00AF8A0A /* FriendCell.swift */; };
 		D28B90E62AE9119D00AF8A0A /* FriendCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B90E52AE9119D00AF8A0A /* FriendCellModel.swift */; };
+		D2A8E8302AE9FBCE00330218 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8E82F2AE9FBCE00330218 /* APIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		D28B90E12AE9118000AF8A0A /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		D28B90E32AE9118F00AF8A0A /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		D28B90E52AE9119D00AF8A0A /* FriendCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCellModel.swift; sourceTree = "<group>"; };
+		D2A8E82F2AE9FBCE00330218 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			children = (
 				D28B90622AE8B1C900AF8A0A /* AppDelegate.swift */,
 				D28B90642AE8B1C900AF8A0A /* SceneDelegate.swift */,
+				D2A8E82F2AE9FBCE00330218 /* APIService.swift */,
 				D28B90D32AE9061E00AF8A0A /* MockJSON */,
 				D28B90B92AE8F78800AF8A0A /* Base */,
 				D28B90BA2AE8F79700AF8A0A /* Pages */,
@@ -296,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D28B90B62AE8F76500AF8A0A /* BaseCellModel.swift in Sources */,
+				D2A8E8302AE9FBCE00330218 /* APIService.swift in Sources */,
 				D28B90E22AE9118000AF8A0A /* SearchCell.swift in Sources */,
 				D28B90AF2AE8E67700AF8A0A /* FriendsViewController.swift in Sources */,
 				D28B90B22AE8F4FE00AF8A0A /* FriendsViewModel.swift in Sources */,
