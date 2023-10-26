@@ -34,6 +34,28 @@ class ViewController: UIViewController {
         viewController.navigationItem.hidesBackButton = true
         navigationController?.pushViewController(viewController, animated: true)
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let navigationBar = navigationController?.navigationBar
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.shadowColor = .clear
+        navigationBar?.scrollEdgeAppearance = navigationBarAppearance
+        
+        navigationController?.navigationBar.backgroundColor = UIColor(red: 252.0/255.0, 
+                                                                      green: 252.0/255.0, 
+                                                                      blue: 252.0/255.0,
+                                                                      alpha: 1)
+        navigationController?.navigationBar.standardAppearance.backgroundColor = UIColor(red: 252.0/255.0,
+                                                                                         green: 252.0/255.0,
+                                                                                         blue: 252.0/255.0,
+                                                                                         alpha: 1)
+        navigationController?.navigationBar.scrollEdgeAppearance?.backgroundColor = UIColor(red: 252.0/255.0,
+                                                                                            green: 252.0/255.0,
+                                                                                            blue: 252.0/255.0,
+                                                                                            alpha: 1)
+    }
 }
 
 enum Sceniaro {

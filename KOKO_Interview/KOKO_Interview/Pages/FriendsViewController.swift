@@ -20,6 +20,8 @@ class FriendsViewController: BaseViewController {
         table.registerWith(cell: SearchCell.self)
         table.registerWith(cell: FriendCell.self)
         table.separatorStyle = .none
+        table.delegate = self
+        table.sectionHeaderTopPadding = 0
         
         return table
     }()
@@ -36,6 +38,24 @@ class FriendsViewController: BaseViewController {
     }
     
     override func layoutSetup() {
+        let barButtonATM = UIBarButtonItem(image: UIImage(named: "icNavPinkWithdraw"),
+                                           style: .plain,
+                                           target: nil,
+                                           action: nil)
+        
+        let barButtonDollar = UIBarButtonItem(image: UIImage(named: "icNavPinkTransfer"),
+                                              style: .plain,
+                                              target: nil,
+                                              action: nil)
+        
+        let barButtonScan = UIBarButtonItem(image: UIImage(named: "icNavPinkScan"),
+                                            style: .plain,
+                                            target: nil,
+                                            action: nil)
+        
+        navigationItem.leftBarButtonItems = [barButtonATM, barButtonDollar]
+        navigationItem.rightBarButtonItem = barButtonScan
+        
         view.addSubview(tableView)
         
         tableView.snp.makeConstraints {
@@ -50,14 +70,6 @@ class FriendsViewController: BaseViewController {
         bindViewModel()
         
         viewModel.inputs.loadConents()
-        
-        tableView.rx.contentOffset
-            .subscribe { [unowned self] offset in
-                print("offset: \(offset)")
-                if offset.y < -100 {
-                    self.refresh()
-                }
-            }.disposed(by: disposeBag)
     }
     
     private func bindViewModel() {
@@ -80,7 +92,20 @@ class FriendsViewController: BaseViewController {
     }
     
     private func refresh() {
-        print("refreshing")
         viewModel.inputs.loadConents()
+    }
+}
+
+extension FriendsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            return UserHeaderView()
+        }
+        
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return (section == 0) ? 100 : 0
     }
 }
