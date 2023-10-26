@@ -17,6 +17,7 @@ class FriendsViewController: BaseViewController {
         
         table.registerWith(cell: InvitationsCell.self)
         table.registerWith(cell: TabSwitchCell.self)
+        table.registerWith(cell: NoFriendCell.self)
         table.registerWith(cell: SearchCell.self)
         table.registerWith(cell: FriendCell.self)
         table.separatorStyle = .none

@@ -44,6 +44,8 @@
 		D28B90E42AE9118F00AF8A0A /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B90E32AE9118F00AF8A0A /* FriendCell.swift */; };
 		D28B90E62AE9119D00AF8A0A /* FriendCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B90E52AE9119D00AF8A0A /* FriendCellModel.swift */; };
 		D2A8E8302AE9FBCE00330218 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8E82F2AE9FBCE00330218 /* APIService.swift */; };
+		D2A8E8492AEA408B00330218 /* NoFriendCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8E8482AEA408B00330218 /* NoFriendCellModel.swift */; };
+		D2A8E84B2AEA409800330218 /* NoFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A8E84A2AEA409800330218 /* NoFriendCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +78,8 @@
 		D28B90E32AE9118F00AF8A0A /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		D28B90E52AE9119D00AF8A0A /* FriendCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCellModel.swift; sourceTree = "<group>"; };
 		D2A8E82F2AE9FBCE00330218 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		D2A8E8482AEA408B00330218 /* NoFriendCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFriendCellModel.swift; sourceTree = "<group>"; };
+		D2A8E84A2AEA409800330218 /* NoFriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoFriendCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +178,8 @@
 				D28B90D92AE910D400AF8A0A /* InvitationsCellModel.swift */,
 				D28B90DB2AE9115A00AF8A0A /* TabSwitchCell.swift */,
 				D28B90DD2AE9116700AF8A0A /* TabSwitchCellModel.swift */,
+				D2A8E84A2AEA409800330218 /* NoFriendCell.swift */,
+				D2A8E8482AEA408B00330218 /* NoFriendCellModel.swift */,
 				D28B90E12AE9118000AF8A0A /* SearchCell.swift */,
 				D28B90DF2AE9117600AF8A0A /* SearchCellModel.swift */,
 				D28B90E32AE9118F00AF8A0A /* FriendCell.swift */,
@@ -302,6 +308,7 @@
 				D2A8E8302AE9FBCE00330218 /* APIService.swift in Sources */,
 				D28B90E22AE9118000AF8A0A /* SearchCell.swift in Sources */,
 				D28B90AF2AE8E67700AF8A0A /* FriendsViewController.swift in Sources */,
+				D2A8E8492AEA408B00330218 /* NoFriendCellModel.swift in Sources */,
 				D28B90B22AE8F4FE00AF8A0A /* FriendsViewModel.swift in Sources */,
 				D28B90D82AE910C300AF8A0A /* InvitationsCell.swift in Sources */,
 				D28B90E62AE9119D00AF8A0A /* FriendCellModel.swift in Sources */,
@@ -313,6 +320,7 @@
 				D28B90E02AE9117600AF8A0A /* SearchCellModel.swift in Sources */,
 				D28B90B82AE8F76500AF8A0A /* BaseViewController.swift in Sources */,
 				D28B90BC2AE8FBE600AF8A0A /* Models.swift in Sources */,
+				D2A8E84B2AEA409800330218 /* NoFriendCell.swift in Sources */,
 				D28B90632AE8B1C900AF8A0A /* AppDelegate.swift in Sources */,
 				D28B90DA2AE910D400AF8A0A /* InvitationsCellModel.swift in Sources */,
 				D28B90652AE8B1C900AF8A0A /* SceneDelegate.swift in Sources */,
