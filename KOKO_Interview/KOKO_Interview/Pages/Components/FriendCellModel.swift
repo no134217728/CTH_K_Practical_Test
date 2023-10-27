@@ -9,4 +9,10 @@ import UIKit
 
 class FriendCellModel: BaseCellModel {
     override var cellIdentifier: UITableViewCell.Type { FriendCell.self }
+    
+    var friend: Friend
+    
+    init(friend: Friend) {
+        self.friend = friend
+    }
 }
