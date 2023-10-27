@@ -22,7 +22,9 @@ class FriendsViewController: BaseViewController {
         table.registerWith(cell: FriendCell.self)
         table.separatorStyle = .none
         table.delegate = self
-        table.sectionHeaderTopPadding = 0
+        if #available(iOS 15.0, *) {
+            table.sectionHeaderTopPadding = 0
+        }
         
         return table
     }()
