@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D256B4072AEF5DA800175B17 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256B4062AEF5DA800175B17 /* TabBarController.swift */; };
+		D256B4372AEF797700175B17 /* ButtonWithInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256B4362AEF797700175B17 /* ButtonWithInfo.swift */; };
 		D28B90632AE8B1C900AF8A0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B90622AE8B1C900AF8A0A /* AppDelegate.swift */; };
 		D28B90652AE8B1C900AF8A0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B90642AE8B1C900AF8A0A /* SceneDelegate.swift */; };
 		D28B90672AE8B1C900AF8A0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B90662AE8B1C900AF8A0A /* ViewController.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		D256B4062AEF5DA800175B17 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		D256B4362AEF797700175B17 /* ButtonWithInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonWithInfo.swift; sourceTree = "<group>"; };
 		D28B905F2AE8B1C900AF8A0A /* KOKO_Interview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KOKO_Interview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D28B90622AE8B1C900AF8A0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D28B90642AE8B1C900AF8A0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 		D28B90D62AE9105B00AF8A0A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				D256B4362AEF797700175B17 /* ButtonWithInfo.swift */,
 				D28B90D42AE9105600AF8A0A /* UserHeaderView.swift */,
 				D28B90D72AE910C300AF8A0A /* InvitationsCell.swift */,
 				D28B90D92AE910D400AF8A0A /* InvitationsCellModel.swift */,
@@ -300,6 +303,7 @@
 				D28B90E22AE9118000AF8A0A /* SearchCell.swift in Sources */,
 				D28B90AF2AE8E67700AF8A0A /* FriendsViewController.swift in Sources */,
 				D2A8E8492AEA408B00330218 /* NoFriendCellModel.swift in Sources */,
+				D256B4372AEF797700175B17 /* ButtonWithInfo.swift in Sources */,
 				D28B90B22AE8F4FE00AF8A0A /* FriendsViewModel.swift in Sources */,
 				D28B90D82AE910C300AF8A0A /* InvitationsCell.swift in Sources */,
 				D28B90E62AE9119D00AF8A0A /* FriendCellModel.swift in Sources */,

@@ -64,11 +64,11 @@ class NoFriendCell: BaseCell {
     override func layoutSetup() {
         super.layoutSetup()
         
-        addSubview(mainImage)
-        addSubview(mainTitle)
-        addSubview(subTitle)
-        addSubview(addFriendButton)
-        addSubview(bottomHint)
+        contentView.addSubview(mainImage)
+        contentView.addSubview(mainTitle)
+        contentView.addSubview(subTitle)
+        contentView.addSubview(addFriendButton)
+        contentView.addSubview(bottomHint)
         
         mainImage.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(65)

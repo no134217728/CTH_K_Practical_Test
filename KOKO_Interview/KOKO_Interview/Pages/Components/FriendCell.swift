@@ -45,8 +45,8 @@ class FriendCell: BaseCell {
         return label
     }()
     
-    private lazy var transferButton: UIButton = {
-        let button = UIButton()
+    private lazy var transferButton: ButtonWithInfo = {
+        let button = ButtonWithInfo()
         
         button.setTitle("轉帳", for: .normal)
         button.layer.borderWidth = 1.2
@@ -56,8 +56,8 @@ class FriendCell: BaseCell {
         return button
     }()
     
-    private lazy var invitationButton: UIButton = {
-        let button = UIButton()
+    private lazy var invitationButton: ButtonWithInfo = {
+        let button = ButtonWithInfo()
         
         button.setTitle("邀請中", for: .normal)
         button.layer.borderWidth = 1.2
@@ -67,8 +67,8 @@ class FriendCell: BaseCell {
         return button
     }()
     
-    private lazy var dotButton: UIButton = {
-        let button = UIButton()
+    private lazy var dotButton: ButtonWithInfo = {
+        let button = ButtonWithInfo()
         
         button.setImage(UIImage(named: "icFriendsMore"), for: .normal)
         
@@ -83,11 +83,19 @@ class FriendCell: BaseCell {
         return view
     }()
     
+    var transferButtonTap: Driver<String> { transferButtonTapRelay.asDriver(onErrorJustReturn: "") }
+    var invitingButtonTap: Driver<String> { invitingButtonTapRelay.asDriver(onErrorJustReturn: "") }
+    var moreButtonTap: Driver<String> { moreButtonTapRelay.asDriver(onErrorJustReturn: "") }
+    
+    private let transferButtonTapRelay: PublishRelay<String> = .init()
+    private let invitingButtonTapRelay: PublishRelay<String> = .init()
+    private let moreButtonTapRelay: PublishRelay<String> = .init()
+    
     override func layoutSetup() {
         super.layoutSetup()
         
-        addSubview(containerView)
-        addSubview(bottomLine)
+        contentView.addSubview(containerView)
+        contentView.addSubview(bottomLine)
         
         containerView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20)
@@ -149,6 +157,11 @@ class FriendCell: BaseCell {
                 $0.width.equalTo(47)
                 $0.height.equalTo(24)
             }
+            
+            invitationButton.fid = cellModel.friend.fid
+            transferButton.fid = cellModel.friend.fid
+            invitationButton.addTarget(self, action: #selector(invitingClick(sender:)), for: .touchUpInside)
+            transferButton.addTarget(self, action: #selector(transferClick(sender:)), for: .touchUpInside)
         case .complete:
             containerView.addSubview(dotButton)
             
@@ -165,9 +178,26 @@ class FriendCell: BaseCell {
                 $0.width.equalTo(47)
                 $0.height.equalTo(24)
             }
+            
+            dotButton.fid = cellModel.friend.fid
+            transferButton.fid = cellModel.friend.fid
+            dotButton.addTarget(self, action: #selector(moreClick(sender:)), for: .touchUpInside)
+            transferButton.addTarget(self, action: #selector(transferClick(sender:)), for: .touchUpInside)
         case .sent: break
         }
         
         nameLabel.text = cellModel.friend.name
+    }
+    
+    @objc private func transferClick(sender: ButtonWithInfo) {
+        transferButtonTapRelay.accept(sender.fid)
+    }
+    
+    @objc private func invitingClick(sender: ButtonWithInfo) {
+        invitingButtonTapRelay.accept(sender.fid)
+    }
+    
+    @objc private func moreClick(sender: ButtonWithInfo) {
+        moreButtonTapRelay.accept(sender.fid)
     }
 }

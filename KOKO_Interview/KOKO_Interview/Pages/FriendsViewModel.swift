@@ -14,6 +14,7 @@ import RxDataSources
 protocol FriendsViewModelInput {
     func setTheCase(theCase: Sceniaro)
     func loadConents()
+    func nameSearch(name: String)
 }
 
 protocol FriendsViewModelOutput {
@@ -38,12 +39,14 @@ class FriendsViewModel: FriendsViewModelType, FriendsViewModelInput, FriendsView
     var items: Driver<[MainSectionModel]> { itemsRelay.asDriver() }
     
     private let itemsRelay: BehaviorRelay<[MainSectionModel]> = .init(value: [])
-    private let friendList1: BehaviorRelay<[Friend]> = .init(value: [])
-    private let friendList2: BehaviorRelay<[Friend]> = .init(value: [])
+    private let friendList1: PublishRelay<[Friend]> = .init()
+    private let friendList2: PublishRelay<[Friend]> = .init()
     
     private var theCase: Sceniaro = .NoFriends
     private var friendInvitationList: [Friend] = []
     private var finalFriendList: [Friend] = []
+    private var allFriendList: [Friend] = []
+    private var filteredFriendList: [Friend] = []
     
     func setTheCase(theCase: Sceniaro) {
         self.theCase = theCase
@@ -59,10 +62,11 @@ class FriendsViewModel: FriendsViewModelType, FriendsViewModelInput, FriendsView
                     case .sent:
                         self.friendInvitationList.append(friend)
                     case .inviting, .complete:
-                        self.finalFriendList.append(friend)
+                        self.allFriendList.append(friend)
                     }
                 }
                 
+                self.finalFriendList = self.allFriendList
                 self.makeCellModel()
             } onError: { error in
                 self.error.accept(error)
@@ -70,7 +74,7 @@ class FriendsViewModel: FriendsViewModelType, FriendsViewModelInput, FriendsView
         case .Friends:
             Observable.zip(friendList1, friendList2).subscribe { [weak self] friendList1, friendList2 in
                 let allFriends: [Friend] = friendList1 + friendList2
-                self?.finalFriendList = allFriends.reduce([]) { (all, next) -> [Friend] in
+                self?.allFriendList = allFriends.reduce([]) { (all, next) -> [Friend] in
                     if all.contains(where: { $0.fid == next.fid }) {
                         guard let theSame = all.first(where: { $0.fid == next.fid }) else { return all }
                         if theSame.updateDate > next.updateDate {
@@ -88,6 +92,7 @@ class FriendsViewModel: FriendsViewModelType, FriendsViewModelInput, FriendsView
                     }
                 }
                 
+                self?.finalFriendList = self?.allFriendList ?? []
                 self?.makeCellModel()
             }.disposed(by: disposeBag)
             
@@ -112,14 +117,23 @@ class FriendsViewModel: FriendsViewModelType, FriendsViewModelInput, FriendsView
                     case .sent:
                         self.friendInvitationList.append(friend)
                     case .inviting, .complete:
-                        self.finalFriendList.append(friend)
+                        self.allFriendList.append(friend)
                     }
                 }
                 
+                self.finalFriendList = self.allFriendList
                 self.makeCellModel()
             } onError: { error in
                 self.error.accept(error)
             }
+        }
+    }
+    
+    func nameSearch(name: String) {
+        if !name.isEmpty {
+            filteredFriendList = allFriendList.filter({ $0.name.contains(name) })
+            finalFriendList = filteredFriendList
+            makeCellModel()
         }
     }
     
@@ -130,8 +144,7 @@ class FriendsViewModel: FriendsViewModelType, FriendsViewModelInput, FriendsView
             contentSectionModels.append(InvitationsCellModel(friend: friend))
         }
         
-        contentSectionModels.append(TabSwitchCellModel(tabs: ["好友", "聊天"], 
-                                                       selectedIndex: 0))
+        contentSectionModels.append(TabSwitchCellModel(tabs: ["好友", "聊天"]))
         
         if finalFriendList.isEmpty {
             contentSectionModels.append(NoFriendCellModel(mainTitle: "就從加好友開始吧：）",
@@ -162,12 +175,14 @@ class MockFriendsViewModel: FriendsViewModelType, FriendsViewModelInput, Friends
     var items: Driver<[MainSectionModel]> { itemsRelay.asDriver() }
     
     private let itemsRelay: BehaviorRelay<[MainSectionModel]> = .init(value: [])
-    private let friendList1: BehaviorRelay<[Friend]> = .init(value: [])
-    private let friendList2: BehaviorRelay<[Friend]> = .init(value: [])
+    private let friendList1: PublishRelay<[Friend]> = .init()
+    private let friendList2: PublishRelay<[Friend]> = .init()
     
     private var theCase: Sceniaro = .NoFriends
     private var friendInvitationList: [Friend] = []
     private var finalFriendList: [Friend] = []
+    private var allFriendList: [Friend] = []
+    private var filteredFriendList: [Friend] = []
     
     func setTheCase(theCase: Sceniaro) {
         self.theCase = theCase
@@ -267,6 +282,14 @@ class MockFriendsViewModel: FriendsViewModelType, FriendsViewModelInput, Friends
         }
     }
     
+    func nameSearch(name: String) {
+        if !name.isEmpty {
+            filteredFriendList = allFriendList.filter({ $0.name.contains(name) })
+            finalFriendList = filteredFriendList
+            makeCellModel()
+        }
+    }
+    
     private func makeCellModel() {
         var contentSectionModels: [BaseCellModel] = []
         
@@ -274,8 +297,7 @@ class MockFriendsViewModel: FriendsViewModelType, FriendsViewModelInput, Friends
             contentSectionModels.append(InvitationsCellModel(friend: friend))
         }
         
-        contentSectionModels.append(TabSwitchCellModel(tabs: ["好友", "聊天"],
-                                                       selectedIndex: 0))
+        contentSectionModels.append(TabSwitchCellModel(tabs: ["好友", "聊天"]))
         
         if finalFriendList.isEmpty {
             contentSectionModels.append(NoFriendCellModel(mainTitle: "就從加好友開始吧：）",

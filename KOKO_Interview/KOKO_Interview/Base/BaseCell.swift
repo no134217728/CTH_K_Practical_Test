@@ -15,6 +15,7 @@ class BaseCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         layoutSetup()
+        additionalSetup()
     }
     
     required init?(coder: NSCoder) {
@@ -28,6 +29,10 @@ class BaseCell: UITableViewCell {
     }
     
     func configureWith(cellModel: BaseCellModelProtocol) {
+        
+    }
+    
+    func additionalSetup() {
         
     }
 }

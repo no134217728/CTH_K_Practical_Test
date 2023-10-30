@@ -27,11 +27,15 @@ class SearchCell: BaseCell {
         return button
     }()
     
+    var searchResult: Driver<String> { searchResultRelay.asDriver(onErrorJustReturn: "") }
+    
+    private let searchResultRelay: PublishRelay<String> = .init()
+    
     override func layoutSetup() {
         super.layoutSetup()
         
-        addSubview(searchBar)
-        addSubview(addFriend)
+        contentView.addSubview(searchBar)
+        contentView.addSubview(addFriend)
         
         searchBar.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(30)
@@ -50,5 +54,15 @@ class SearchCell: BaseCell {
         guard let cellModel = cellModel as? SearchCellModel else { return }
         
         searchBar.placeholder = cellModel.searchPlaceholder
+    }
+    
+    override func additionalSetup() {
+//        searchBar.rx.text
+//            .orEmpty
+//            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+//            .distinctUntilChanged()
+//            .subscribe { [weak self] ele in
+//                self?.searchResultRelay.accept(ele.element ?? "")
+//            }.disposed(by: disposeBag)
     }
 }

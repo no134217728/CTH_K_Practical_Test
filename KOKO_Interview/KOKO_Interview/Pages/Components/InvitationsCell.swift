@@ -18,6 +18,7 @@ class InvitationsCell: BaseCell {
         view.layer.shadowOffset = .init(width: 0, height: 4)
         view.layer.shadowColor = .init(red: 0, green: 0, blue: 0, alpha: 0.1)
         view.layer.shadowRadius = 16
+        view.isUserInteractionEnabled = true
         
         return view
     }()
@@ -50,34 +51,34 @@ class InvitationsCell: BaseCell {
         return label
     }()
     
-    private lazy var yesButton: UIButton = {
-        let button = UIButton()
+    private lazy var yesButton: ButtonWithInfo = {
+        let button = ButtonWithInfo()
         
         button.setImage(UIImage(named: "btnFriendsAgree"), for: .normal)
         
         return button
     }()
     
-    private lazy var noButton: UIButton = {
-        let button = UIButton()
+    private lazy var noButton: ButtonWithInfo = {
+        let button = ButtonWithInfo()
         
         button.setImage(UIImage(named: "btnFriendsDelet"), for: .normal)
         
         return button
     }()
     
-    var yesAction: Driver<Void> { yesActionRelay.asDriver(onErrorJustReturn: ()) }
-    var noAction: Driver<Void> { noActionRelay.asDriver(onErrorJustReturn: ()) }
+    var yesAction: Driver<String> { yesActionRelay.asDriver(onErrorJustReturn: "") }
+    var noAction: Driver<String> { noActionRelay.asDriver(onErrorJustReturn: "") }
     
-    private let yesActionRelay: PublishRelay<Void> = .init()
-    private let noActionRelay: PublishRelay<Void> = .init()
+    private let yesActionRelay: PublishRelay<String> = .init()
+    private let noActionRelay: PublishRelay<String> = .init()
     
     override func layoutSetup() {
         super.layoutSetup()
         
         backgroundColor = UIColor(red: 252.0/255.0, green: 252.0/255.0, blue: 252.0/255.0, alpha: 1)
         
-        addSubview(containerView)
+        contentView.addSubview(containerView)
         
         containerView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(30)
@@ -127,5 +128,18 @@ class InvitationsCell: BaseCell {
         
         headerImage.image = UIImage(named: "imgFriendsList")
         nameLabel.text = cellModel.friend.name
+        
+        noButton.fid = cellModel.friend.fid
+        yesButton.fid = cellModel.friend.fid
+    }
+    
+    override func additionalSetup() {
+        yesButton.rx.tap.bind { [unowned yesButton, weak self] _ in
+            self?.yesActionRelay.accept(yesButton.fid)
+        }.disposed(by: disposeBag)
+
+        noButton.rx.tap.bind { [unowned noButton, weak self] _ in
+            self?.noActionRelay.accept(noButton.fid)
+        }.disposed(by: disposeBag)
     }
 }

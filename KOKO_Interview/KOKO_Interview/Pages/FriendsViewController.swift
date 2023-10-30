@@ -91,6 +91,36 @@ class FriendsViewController: BaseViewController {
         RxTableViewSectionedReloadDataSource<MainSectionModel> { _, tableView, indexPath, cellModel in
             let cell = tableView.dequeueBaseCell(class: cellModel.cellIdentifier, for: indexPath, configure: cellModel)
             
+            if let tabCell = cell as? TabSwitchCell, let tabCellModel = cellModel as? TabSwitchCellModel {
+                tabCell.tap.drive { tag in
+                    tabCellModel.selectedIndex = tag
+                }.disposed(by: tabCell.disposeBag)
+            } else if let searchCell = cell as? SearchCell {
+                searchCell.searchResult.drive { [weak self] search in
+                    self?.viewModel.inputs.nameSearch(name: search)
+                }.disposed(by: searchCell.disposeBag)
+            } else if let friendCell = cell as? FriendCell {
+                friendCell.transferButtonTap.drive { fid in
+                    print("transferButtonTap: \(fid)")
+                }.disposed(by: friendCell.disposeBag)
+                
+                friendCell.invitingButtonTap.drive { fid in
+                    print("invitingButtonTap: \(fid)")
+                }.disposed(by: friendCell.disposeBag)
+                
+                friendCell.moreButtonTap.drive { fid in
+                    print("moreButtonTap: \(fid)")
+                }.disposed(by: friendCell.disposeBag)
+            } else if let invitationCell = cell as? InvitationsCell {
+                invitationCell.yesAction.drive { fid in
+                    print("yesAction: \(fid)")
+                }.disposed(by: invitationCell.disposeBag)
+                
+                invitationCell.noAction.drive { fid in
+                    print("noAction: \(fid)")
+                }.disposed(by: invitationCell.disposeBag)
+            }
+            
             return cell
         }
     }

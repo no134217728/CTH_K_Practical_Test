@@ -11,10 +11,9 @@ class TabSwitchCellModel: BaseCellModel {
     override var cellIdentifier: UITableViewCell.Type { TabSwitchCell.self }
     
     var tabs: [String]
-    var selectedIndex: Int
+    var selectedIndex: Int = 0
     
-    init(tabs: [String], selectedIndex: Int) {
+    init(tabs: [String]) {
         self.tabs = tabs
-        self.selectedIndex = selectedIndex
     }
 }

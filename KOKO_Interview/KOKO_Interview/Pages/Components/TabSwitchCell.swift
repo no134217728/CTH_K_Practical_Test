@@ -29,8 +29,8 @@ class TabSwitchCell: BaseCell {
         return view
     }()
     
-    var tap: Driver<Void> { tapRelay.asDriver(onErrorJustReturn: ()) }
-    private let tapRelay: PublishRelay<Void> = .init()
+    var tap: Driver<Int> { tapRelay.asDriver(onErrorJustReturn: 999) }
+    private let tapRelay: PublishRelay<Int> = .init()
     
     private var tabLabels: [UILabel] = []
     
@@ -39,8 +39,8 @@ class TabSwitchCell: BaseCell {
         
         backgroundColor = UIColor(red: 252.0/255.0, green: 252.0/255.0, blue: 252.0/255.0, alpha: 1)
         
-        addSubview(selectedBar)
-        addSubview(bottomLine)
+        contentView.addSubview(selectedBar)
+        contentView.addSubview(bottomLine)
         
         bottomLine.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
@@ -53,7 +53,7 @@ class TabSwitchCell: BaseCell {
         
         tabLabels = []
         for tab in cellModel.tabs.enumerated() {
-            var tabLabel: UILabel = {
+            let tabLabel: UILabel = {
                 let label = UILabel()
                 
                 label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
@@ -63,7 +63,7 @@ class TabSwitchCell: BaseCell {
                 return label
             }()
             
-            var tabButton: UIButton = {
+            let tabButton: UIButton = {
                 let button = UIButton()
                 
                 button.tag = tab.offset
@@ -71,8 +71,8 @@ class TabSwitchCell: BaseCell {
                 return button
             }()
             
-            addSubview(tabLabel)
-            addSubview(tabButton)
+            contentView.addSubview(tabLabel)
+            contentView.addSubview(tabButton)
             tabLabels.append(tabLabel)
             
             if tab.offset == 0 {
@@ -95,30 +95,28 @@ class TabSwitchCell: BaseCell {
                 $0.top.leading.trailing.bottom.equalTo(tabLabel)
             }
             
-            let selectedTab = tabLabels[cellModel.selectedIndex]
-            selectedBar.snp.remakeConstraints {
-                $0.centerX.equalTo(selectedTab.snp.centerX)
-                $0.bottom.equalToSuperview()
-                $0.height.equalTo(4)
-                $0.width.equalTo(20)
-            }
-            
-            tabButton.addTarget(self, action: #selector(tabClicked(sender:)), for: .touchUpInside)
-        }
-    }
-    
-    @objc private func tabClicked(sender: UIButton) {
-        print(sender.tag)
-        let selectedTab = tabLabels[sender.tag]
-        UIView.animate(withDuration: 1) {
-            self.selectedBar.snp.remakeConstraints {
-                $0.centerX.equalTo(selectedTab.snp.centerX)
-                $0.bottom.equalToSuperview()
-                $0.height.equalTo(4)
-                $0.width.equalTo(20)
-            }
+            tabButton.rx.tap.bind { [unowned tabButton, weak self] _ in
+                guard let selectedTab = self?.tabLabels[tabButton.tag] else { return }
+                
+                UIView.animate(withDuration: 1) {
+                    self?.selectedBar.snp.remakeConstraints {
+                        $0.centerX.equalTo(selectedTab.snp.centerX)
+                        $0.bottom.equalToSuperview()
+                        $0.height.equalTo(4)
+                        $0.width.equalTo(20)
+                    }
+                }
+                
+                self?.tapRelay.accept(tabButton.tag)
+            }.disposed(by: disposeBag)
         }
         
-        tapRelay.accept(())
+        let selectedTab = tabLabels[cellModel.selectedIndex]
+        selectedBar.snp.remakeConstraints {
+            $0.centerX.equalTo(selectedTab.snp.centerX)
+            $0.bottom.equalToSuperview()
+            $0.height.equalTo(4)
+            $0.width.equalTo(20)
+        }
     }
 }

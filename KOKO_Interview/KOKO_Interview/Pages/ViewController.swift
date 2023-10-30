@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import RxSwift
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UISearchBarDelegate {
     @IBAction func noFriend(_ sender: Any) {
         let viewModel = FriendsViewModel()
         viewModel.inputs.setTheCase(theCase: .NoFriends)
