@@ -75,10 +75,19 @@ class FriendCell: BaseCell {
         return button
     }()
     
+    private lazy var bottomLine: UIView = {
+        let view = UIView()
+        
+        view.backgroundColor = UIColor(red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 1)
+        
+        return view
+    }()
+    
     override func layoutSetup() {
         super.layoutSetup()
         
         addSubview(containerView)
+        addSubview(bottomLine)
         
         containerView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20)
@@ -91,13 +100,21 @@ class FriendCell: BaseCell {
         
         headerImage.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(30)
-            $0.centerY.equalToSuperview()
+            $0.top.bottom.equalToSuperview().inset(10)
             $0.width.height.equalTo(40)
         }
         
         nameLabel.snp.makeConstraints {
             $0.leading.equalTo(headerImage.snp.trailing).offset(15)
             $0.centerY.equalTo(headerImage.snp.centerY)
+        }
+        
+        bottomLine.snp.makeConstraints {
+            $0.leading.equalTo(nameLabel)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(18)
+            $0.trailing.equalToSuperview().offset(-30)
+            $0.bottom.equalToSuperview()
+            $0.height.equalTo(1)
         }
     }
     
@@ -120,7 +137,7 @@ class FriendCell: BaseCell {
             containerView.addSubview(invitationButton)
             
             invitationButton.snp.makeConstraints {
-                $0.trailing.equalToSuperview().offset(-20)
+                $0.trailing.equalToSuperview()
                 $0.centerY.equalToSuperview()
                 $0.width.equalTo(60)
                 $0.height.equalTo(24)
@@ -150,5 +167,7 @@ class FriendCell: BaseCell {
             }
         case .sent: break
         }
+        
+        nameLabel.text = cellModel.friend.name
     }
 }

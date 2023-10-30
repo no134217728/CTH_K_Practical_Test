@@ -22,6 +22,7 @@ class FriendsViewController: BaseViewController {
         table.registerWith(cell: FriendCell.self)
         table.separatorStyle = .none
         table.delegate = self
+        
         if #available(iOS 15.0, *) {
             table.sectionHeaderTopPadding = 0
         }
@@ -43,18 +44,18 @@ class FriendsViewController: BaseViewController {
     override func layoutSetup() {
         let barButtonATM = UIBarButtonItem(image: UIImage(named: "icNavPinkWithdraw"),
                                            style: .plain,
-                                           target: nil,
-                                           action: nil)
+                                           target: self,
+                                           action: #selector(goBack))
         
         let barButtonDollar = UIBarButtonItem(image: UIImage(named: "icNavPinkTransfer"),
                                               style: .plain,
-                                              target: nil,
-                                              action: nil)
+                                              target: self,
+                                              action: #selector(keyboardDismiss))
         
         let barButtonScan = UIBarButtonItem(image: UIImage(named: "icNavPinkScan"),
                                             style: .plain,
-                                            target: nil,
-                                            action: nil)
+                                            target: self,
+                                            action: #selector(keyboardDismiss))
         
         navigationItem.leftBarButtonItems = [barButtonATM, barButtonDollar]
         navigationItem.rightBarButtonItem = barButtonScan
@@ -96,6 +97,14 @@ class FriendsViewController: BaseViewController {
     
     private func refresh() {
         viewModel.inputs.loadConents()
+    }
+    
+    @objc private func goBack() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func keyboardDismiss() {
+        view.endEditing(true)
     }
 }
 

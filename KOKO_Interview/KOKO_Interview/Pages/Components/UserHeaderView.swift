@@ -67,20 +67,17 @@ class UserHeaderView: UIView {
         super.init(frame: .zero)
         
         layoutSetup()
-        APIService.shared.fetchObject(requestURL: "https://dimanyen.github.io/man.json", resModel: [Man].self) { result in
-            switch result {
-            case .success(let man):
-                guard let first = man.first else {
-                    print("Man first error.")
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    self.setupData(data: first)
-                }
-            case .failure(let error):
-                print("UserHeader Error: \(error)")
+        APIService.shared.fetchObject(requestURL: "https://dimanyen.github.io/man.json", resModel: [Man].self) { response in
+            guard let first = response.first else {
+                print("Man first error.")
+                return
             }
+            
+            DispatchQueue.main.async {
+                self.setupData(data: first)
+            }
+        } onError: { error in
+            print("UserHeader Error: \(error)")
         }
     }
     

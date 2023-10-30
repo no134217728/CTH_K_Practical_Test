@@ -37,6 +37,8 @@ class TabSwitchCell: BaseCell {
     override func layoutSetup() {
         super.layoutSetup()
         
+        backgroundColor = UIColor(red: 252.0/255.0, green: 252.0/255.0, blue: 252.0/255.0, alpha: 1)
+        
         addSubview(selectedBar)
         addSubview(bottomLine)
         
@@ -71,18 +73,20 @@ class TabSwitchCell: BaseCell {
             
             addSubview(tabLabel)
             addSubview(tabButton)
+            tabLabels.append(tabLabel)
+            
             if tab.offset == 0 {
                 tabLabel.snp.makeConstraints {
                     $0.leading.equalToSuperview().offset(32)
-                    $0.top.equalToSuperview()
-                    $0.bottom.equalToSuperview().offset(-10)
+                    $0.top.equalToSuperview().offset(9)
+                    $0.bottom.equalToSuperview().offset(-9)
                     $0.height.equalTo(18)
                 }
             } else {
                 tabLabel.snp.makeConstraints {
-                    $0.leading.equalTo(tabLabels[tab.offset].snp.trailing).offset(36)
-                    $0.top.equalToSuperview()
-                    $0.bottom.equalToSuperview().offset(-10)
+                    $0.leading.equalTo(tabLabels[tab.offset - 1].snp.trailing).offset(36)
+                    $0.top.equalToSuperview().offset(9)
+                    $0.bottom.equalToSuperview().offset(-9)
                     $0.height.equalTo(18)
                 }
             }
@@ -91,18 +95,27 @@ class TabSwitchCell: BaseCell {
                 $0.top.leading.trailing.bottom.equalTo(tabLabel)
             }
             
+            let selectedTab = tabLabels[cellModel.selectedIndex]
+            selectedBar.snp.remakeConstraints {
+                $0.centerX.equalTo(selectedTab.snp.centerX)
+                $0.bottom.equalToSuperview()
+                $0.height.equalTo(4)
+                $0.width.equalTo(20)
+            }
+            
             tabButton.addTarget(self, action: #selector(tabClicked(sender:)), for: .touchUpInside)
-            tabLabels.append(tabLabel)
         }
     }
     
     @objc private func tabClicked(sender: UIButton) {
+        print(sender.tag)
         let selectedTab = tabLabels[sender.tag]
         UIView.animate(withDuration: 1) {
             self.selectedBar.snp.remakeConstraints {
                 $0.centerX.equalTo(selectedTab.snp.centerX)
                 $0.bottom.equalToSuperview()
                 $0.height.equalTo(4)
+                $0.width.equalTo(20)
             }
         }
         

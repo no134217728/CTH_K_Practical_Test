@@ -14,6 +14,8 @@ class SearchCell: BaseCell {
     private lazy var searchBar: UISearchBar = {
         let search = UISearchBar()
         
+        search.searchBarStyle = .minimal
+        
         return search
     }()
     
@@ -39,7 +41,7 @@ class SearchCell: BaseCell {
         
         addFriend.snp.makeConstraints {
             $0.leading.equalTo(searchBar.snp.trailing).offset(15)
-            $0.top.equalToSuperview().offset(20)
+            $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().offset(-30)
         }
     }

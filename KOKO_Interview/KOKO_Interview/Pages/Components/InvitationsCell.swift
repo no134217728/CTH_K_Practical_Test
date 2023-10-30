@@ -75,11 +75,13 @@ class InvitationsCell: BaseCell {
     override func layoutSetup() {
         super.layoutSetup()
         
+        backgroundColor = UIColor(red: 252.0/255.0, green: 252.0/255.0, blue: 252.0/255.0, alpha: 1)
+        
         addSubview(containerView)
         
         containerView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(30)
-            $0.top.bottom.equalToSuperview()
+            $0.top.bottom.equalToSuperview().inset(5)
         }
         
         containerView.addSubview(headerImage)
@@ -104,6 +106,7 @@ class InvitationsCell: BaseCell {
             $0.leading.equalTo(nameLabel.snp.leading)
             $0.top.equalTo(nameLabel.snp.bottom).offset(2)
             $0.height.equalTo(18)
+            $0.bottom.equalToSuperview().offset(-14)
         }
         
         noButton.snp.makeConstraints {

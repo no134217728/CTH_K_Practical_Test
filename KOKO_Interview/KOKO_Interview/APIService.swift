@@ -52,7 +52,7 @@ class APIService {
     static let shared = APIService()
     private let networkProvider = NetworkProvider()
     
-    func fetchObject<Response: Codable>(requestURL: String, resModel: Response.Type, completion: @escaping (Result<Response, NetworkError>) -> Void) {
+    func fetchObject<Response: Codable>(requestURL: String, resModel: Response.Type, completion: @escaping (Response) -> Void, onError: @escaping (NetworkError) -> Void) {
         networkProvider.fetchData(requestURL: requestURL) { result in
             switch result {
             case .success(let originalData):
@@ -62,14 +62,14 @@ class APIService {
                        let response = dict["response"] {
                         let mainData = try JSONSerialization.data(withJSONObject: response)
                         let data = try JSONDecoder().decode(Response.self, from: mainData)
-                        completion(.success(data))
+                        completion(data)
                     }
                 } catch {
                     print("decode error: \(error)")
-                    completion(.failure(.decodeError))
+                    onError(.decodeError)
                 }
             case .failure(let error):
-                completion(.failure(error))
+                onError(error)
             }
         }
     }
