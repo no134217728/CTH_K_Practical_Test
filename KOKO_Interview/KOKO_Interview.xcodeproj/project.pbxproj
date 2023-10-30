@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D256B4072AEF5DA800175B17 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256B4062AEF5DA800175B17 /* TabBarController.swift */; };
 		D28B90632AE8B1C900AF8A0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B90622AE8B1C900AF8A0A /* AppDelegate.swift */; };
 		D28B90652AE8B1C900AF8A0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B90642AE8B1C900AF8A0A /* SceneDelegate.swift */; };
 		D28B90672AE8B1C900AF8A0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B90662AE8B1C900AF8A0A /* ViewController.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D256B4062AEF5DA800175B17 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D28B905F2AE8B1C900AF8A0A /* KOKO_Interview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KOKO_Interview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D28B90622AE8B1C900AF8A0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D28B90642AE8B1C900AF8A0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			children = (
 				D28B90D62AE9105B00AF8A0A /* Components */,
 				D28B90662AE8B1C900AF8A0A /* ViewController.swift */,
+				D256B4062AEF5DA800175B17 /* TabBarController.swift */,
 				D28B90AE2AE8E67700AF8A0A /* FriendsViewController.swift */,
 				D28B90B12AE8F4FE00AF8A0A /* FriendsViewModel.swift */,
 				D28B90BB2AE8FBE600AF8A0A /* Models.swift */,
@@ -305,6 +308,7 @@
 				D28B90D52AE9105700AF8A0A /* UserHeaderView.swift in Sources */,
 				D28B90DC2AE9115A00AF8A0A /* TabSwitchCell.swift in Sources */,
 				D28B90B72AE8F76500AF8A0A /* BaseCell.swift in Sources */,
+				D256B4072AEF5DA800175B17 /* TabBarController.swift in Sources */,
 				D28B90E02AE9117600AF8A0A /* SearchCellModel.swift in Sources */,
 				D28B90B82AE8F76500AF8A0A /* BaseViewController.swift in Sources */,
 				D28B90BC2AE8FBE600AF8A0A /* Models.swift in Sources */,

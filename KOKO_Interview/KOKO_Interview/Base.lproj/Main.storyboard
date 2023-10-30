@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rb2-k7-dqp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wkm-XD-nlw">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -17,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ctk-rt-SCN">
-                                <rect key="frame" x="158.66666666666666" y="281" width="76" height="35"/>
+                                <rect key="frame" x="158.66666666666666" y="256.66666666666669" width="76" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="無好友"/>
                                 <connections>
@@ -25,7 +26,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lhV-1u-Ecs">
-                                <rect key="frame" x="149.66666666666666" y="340" width="94" height="35"/>
+                                <rect key="frame" x="149.66666666666666" y="315.66666666666669" width="94" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="只有好友"/>
                                 <connections>
@@ -33,7 +34,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h01-l2-mOG">
-                                <rect key="frame" x="141" y="399" width="111" height="35"/>
+                                <rect key="frame" x="141" y="374.66666666666669" width="111" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="好友含邀請"/>
                                 <connections>
@@ -56,12 +57,29 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1064.885496183206" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="1991.6030534351144" y="-2.1126760563380285"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="bkn-s4-0C3">
+            <objects>
+                <viewController id="Anx-Xh-COg" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wqf-ko-lwc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Yff-6h-P4x"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="icTabbarHomeOff" selectedImage="icTabbarHomeOff" id="pGZ-hb-Vwh"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IZU-yk-Uw5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-715" y="699"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="lD0-25-ywm">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Rb2-k7-dqp" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="icTabbarFriendsOn" selectedImage="icTabbarFriendsOn" id="YCd-1S-fmq"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="5rC-jR-kUm">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -77,10 +95,87 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q5S-FW-Whj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1064.885496183206" y="-2.1126760563380285"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="mAd-2w-skT">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="wkm-XD-nlw" customClass="TabBarController" customModule="KOKO_Interview" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rAc-af-OAh">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="LuH-ey-btS" kind="relationship" relationship="viewControllers" id="hnd-Nb-c8R"/>
+                        <segue destination="Rb2-k7-dqp" kind="relationship" relationship="viewControllers" id="rt7-VO-Hsb"/>
+                        <segue destination="Anx-Xh-COg" kind="relationship" relationship="viewControllers" id="JWB-8z-Ywy"/>
+                        <segue destination="bBI-7a-bkU" kind="relationship" relationship="viewControllers" id="ttE-zo-pwJ"/>
+                        <segue destination="fTS-Eh-coI" kind="relationship" relationship="viewControllers" id="7Kj-HG-pt9"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yml-IZ-nMq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="138.1679389312977" y="-2.1126760563380285"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="nbL-ly-f6g">
+            <objects>
+                <viewController id="bBI-7a-bkU" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OsJ-0f-Bx9">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="3qK-Ea-kgj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="icTabbarManageOff" selectedImage="icTabbarManageOff" id="TJD-Bm-EoP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D9o-St-OUN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="699"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="VD0-cA-DRc">
+            <objects>
+                <viewController id="fTS-Eh-coI" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rln-I4-pC4">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="wOu-YU-05g"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="icTabbarSettingOff" selectedImage="icTabbarSettingOff" id="JeM-nt-FpW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aZy-nA-hOc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1065" y="699"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="O3O-dS-Lgj">
+            <objects>
+                <viewController id="LuH-ey-btS" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dax-4e-zqy">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="bid-Bk-guZ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="icTabbarProductsOff" selectedImage="icTabbarProductsOff" id="r3v-J8-ZrL"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6ll-u5-wjJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1065" y="-686"/>
         </scene>
     </scenes>
     <resources>
+        <image name="icTabbarFriendsOn" width="28" height="46"/>
+        <image name="icTabbarHomeOff" width="85" height="68"/>
+        <image name="icTabbarManageOff" width="28" height="46"/>
+        <image name="icTabbarProductsOff" width="28" height="46"/>
+        <image name="icTabbarSettingOff" width="28" height="46"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
