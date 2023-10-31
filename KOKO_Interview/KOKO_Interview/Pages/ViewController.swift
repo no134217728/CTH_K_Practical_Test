@@ -11,7 +11,7 @@ import RxSwift
 class ViewController: UIViewController, UISearchBarDelegate {
     @IBAction func noFriend(_ sender: Any) {
         let viewModel = FriendsViewModel()
-        viewModel.inputs.setTheCase(theCase: .NoFriends)
+        viewModel.inputs.setTheCase(theCase: .NoFriends, services: SharedConfig.shared.apiService)
         
         let viewController = FriendsViewController(viewModel: viewModel)
         viewController.navigationItem.hidesBackButton = true
@@ -20,7 +20,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
     
     @IBAction func onlyFriends(_ sender: Any) {
         let viewModel = FriendsViewModel()
-        viewModel.inputs.setTheCase(theCase: .Friends)
+        viewModel.inputs.setTheCase(theCase: .Friends, services: SharedConfig.shared.apiService)
         
         let viewController = FriendsViewController(viewModel: viewModel)
         viewController.navigationItem.hidesBackButton = true
@@ -29,7 +29,7 @@ class ViewController: UIViewController, UISearchBarDelegate {
     
     @IBAction func friendsInvitation(_ sender: Any) {
         let viewModel = FriendsViewModel()
-        viewModel.inputs.setTheCase(theCase: .WithInvitations)
+        viewModel.inputs.setTheCase(theCase: .WithInvitations, services: SharedConfig.shared.apiService)
         
         let viewController = FriendsViewController(viewModel: viewModel)
         viewController.navigationItem.hidesBackButton = true

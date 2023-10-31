@@ -15,6 +15,10 @@ enum NetworkError: Swift.Error {
     case networkError
 }
 
+protocol APIService {
+    func fetchObject<Response: Codable>(endPoint: String, resModel: Response.Type, completion: @escaping (Response) -> Void, onError: @escaping (NetworkError) -> Void)
+}
+
 class NetworkProvider: NSObject, URLSessionDelegate {
     private lazy var urlSession = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
     
@@ -48,12 +52,12 @@ class NetworkProvider: NSObject, URLSessionDelegate {
     }
 }
 
-class APIService {
-    static let shared = APIService()
+class APIRequest: APIService {
     private let networkProvider = NetworkProvider()
+    private let url = "https://dimanyen.github.io/"
     
-    func fetchObject<Response: Codable>(requestURL: String, resModel: Response.Type, completion: @escaping (Response) -> Void, onError: @escaping (NetworkError) -> Void) {
-        networkProvider.fetchData(requestURL: requestURL) { result in
+    func fetchObject<Response: Codable>(endPoint: String, resModel: Response.Type, completion: @escaping (Response) -> Void, onError: @escaping (NetworkError) -> Void) {
+        networkProvider.fetchData(requestURL: url + endPoint) { result in
             switch result {
             case .success(let originalData):
                 do {
@@ -71,6 +75,35 @@ class APIService {
             case .failure(let error):
                 onError(error)
             }
+        }
+    }
+}
+
+class MockAPIRequest: APIService {
+    func fetchObject<Response: Codable>(endPoint: String, resModel: Response.Type, completion: @escaping (Response) -> Void, onError: @escaping (NetworkError) -> Void) {
+        guard let file = endPoint.components(separatedBy: ".").first else {
+            print("endPoint error: \(endPoint)")
+            return
+        }
+        
+        if let path = Bundle.main.path(forResource: file, ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path))
+                let jsonDict = try JSONSerialization.jsonObject(with: data)
+                
+                if let dict = jsonDict as? [String: Any],
+                   let response = dict["response"] {
+                    let mainData = try JSONSerialization.data(withJSONObject: response)
+                    let data = try JSONDecoder().decode(Response.self, from: mainData)
+                    completion(data)
+                } else {
+                    print("dict error: \(endPoint)")
+                }
+            } catch {
+                print("file error: \(endPoint), error: \(error)")
+            }
+        } else {
+            print("path error: \(endPoint)")
         }
     }
 }

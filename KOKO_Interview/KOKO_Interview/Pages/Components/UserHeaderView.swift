@@ -67,7 +67,7 @@ class UserHeaderView: UIView {
         super.init(frame: .zero)
         
         layoutSetup()
-        APIService.shared.fetchObject(requestURL: "https://dimanyen.github.io/man.json", resModel: [Man].self) { response in
+        SharedConfig.shared.apiService.fetchObject(endPoint: "man.json", resModel: [Man].self) { response in
             guard let first = response.first else {
                 print("Man first error.")
                 return
