@@ -130,11 +130,8 @@ class FriendsViewModel: FriendsViewModelType, FriendsViewModelInput, FriendsView
     }
     
     func nameSearch(name: String) {
-        if !name.isEmpty {
-            filteredFriendList = allFriendList.filter({ $0.name.contains(name) })
-            finalFriendList = filteredFriendList
-            makeCellModel()
-        }
+        finalFriendList = !name.isEmpty ? allFriendList.filter({ $0.name.contains(name) }) : allFriendList
+        makeCellModel()
     }
     
     private func makeCellModel() {
@@ -146,7 +143,7 @@ class FriendsViewModel: FriendsViewModelType, FriendsViewModelInput, FriendsView
         
         contentSectionModels.append(TabSwitchCellModel(tabs: ["好友", "聊天"]))
         
-        if finalFriendList.isEmpty {
+        if allFriendList.isEmpty {
             contentSectionModels.append(NoFriendCellModel(mainTitle: "就從加好友開始吧：）",
                                                           subTitle: "與好友們一起用 KOKO 聯起來！\n還能互相收付款、發紅包呢：）",
                                                           hint: "幫助好友更快找到你？設定 KOKO ID",
@@ -283,11 +280,8 @@ class MockFriendsViewModel: FriendsViewModelType, FriendsViewModelInput, Friends
     }
     
     func nameSearch(name: String) {
-        if !name.isEmpty {
-            filteredFriendList = allFriendList.filter({ $0.name.contains(name) })
-            finalFriendList = filteredFriendList
-            makeCellModel()
-        }
+        finalFriendList = !name.isEmpty ? allFriendList.filter({ $0.name.contains(name) }) : allFriendList
+        makeCellModel()
     }
     
     private func makeCellModel() {
@@ -299,7 +293,7 @@ class MockFriendsViewModel: FriendsViewModelType, FriendsViewModelInput, Friends
         
         contentSectionModels.append(TabSwitchCellModel(tabs: ["好友", "聊天"]))
         
-        if finalFriendList.isEmpty {
+        if allFriendList.isEmpty {
             contentSectionModels.append(NoFriendCellModel(mainTitle: "就從加好友開始吧：）",
                                                           subTitle: "與好友們一起用 KOKO 聯起來！\n還能互相收付款、發紅包呢：）",
                                                           hint: "幫助好友更快找到你？設定 KOKO ID",

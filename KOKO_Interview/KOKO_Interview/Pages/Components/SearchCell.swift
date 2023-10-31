@@ -57,12 +57,12 @@ class SearchCell: BaseCell {
     }
     
     override func additionalSetup() {
-//        searchBar.rx.text
-//            .orEmpty
-//            .throttle(.seconds(1), scheduler: MainScheduler.instance)
-//            .distinctUntilChanged()
-//            .subscribe { [weak self] ele in
-//                self?.searchResultRelay.accept(ele.element ?? "")
-//            }.disposed(by: disposeBag)
+        searchBar.rx.text
+            .orEmpty
+            .throttle(.seconds(1), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .subscribe { [weak self] ele in
+                self?.searchResultRelay.accept(ele.element ?? "")
+            }.disposed(by: disposeBag)
     }
 }
