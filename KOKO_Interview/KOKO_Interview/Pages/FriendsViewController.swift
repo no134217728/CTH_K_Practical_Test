@@ -88,36 +88,43 @@ class FriendsViewController: BaseViewController {
     }
     
     private func makeDataSource() -> RxTableViewSectionedReloadDataSource<MainSectionModel> {
-        RxTableViewSectionedReloadDataSource<MainSectionModel> { _, tableView, indexPath, cellModel in
+        RxTableViewSectionedReloadDataSource<MainSectionModel> { [weak self] _, tableView, indexPath, cellModel in
             let cell = tableView.dequeueBaseCell(class: cellModel.cellIdentifier, for: indexPath, configure: cellModel)
             
             if let tabCell = cell as? TabSwitchCell, let tabCellModel = cellModel as? TabSwitchCellModel {
-                tabCell.tap.drive { tag in
+                tabCell.tap.drive { [weak self] tag in
                     tabCellModel.selectedIndex = tag
+                    self?.view.endEditing(true)
                 }.disposed(by: tabCell.disposeBag)
             } else if let searchCell = cell as? SearchCell {
                 searchCell.searchResult.drive { [weak self] search in
                     self?.viewModel.inputs.nameSearch(name: search)
+                    self?.view.endEditing(true)
                 }.disposed(by: searchCell.disposeBag)
             } else if let friendCell = cell as? FriendCell {
-                friendCell.transferButtonTap.drive { fid in
+                friendCell.transferButtonTap.drive { [weak self] fid in
                     print("transferButtonTap: \(fid)")
+                    self?.view.endEditing(true)
                 }.disposed(by: friendCell.disposeBag)
                 
-                friendCell.invitingButtonTap.drive { fid in
+                friendCell.invitingButtonTap.drive { [weak self] fid in
                     print("invitingButtonTap: \(fid)")
+                    self?.view.endEditing(true)
                 }.disposed(by: friendCell.disposeBag)
                 
-                friendCell.moreButtonTap.drive { fid in
+                friendCell.moreButtonTap.drive { [weak self] fid in
                     print("moreButtonTap: \(fid)")
+                    self?.view.endEditing(true)
                 }.disposed(by: friendCell.disposeBag)
             } else if let invitationCell = cell as? InvitationsCell {
-                invitationCell.yesAction.drive { fid in
+                invitationCell.yesAction.drive { [weak self] fid in
                     print("yesAction: \(fid)")
+                    self?.view.endEditing(true)
                 }.disposed(by: invitationCell.disposeBag)
                 
-                invitationCell.noAction.drive { fid in
+                invitationCell.noAction.drive { [weak self] fid in
                     print("noAction: \(fid)")
+                    self?.view.endEditing(true)
                 }.disposed(by: invitationCell.disposeBag)
             }
             
