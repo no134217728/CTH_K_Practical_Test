@@ -95,37 +95,37 @@ class FriendsViewController: BaseViewController {
                 tabCell.tap.drive { [weak self] tag in
                     tabCellModel.selectedIndex = tag
                     self?.view.endEditing(true)
-                }.disposed(by: tabCell.disposeBag)
+                }.disposed(by: tabCell.rx.reuseBag)
             } else if let searchCell = cell as? SearchCell {
                 searchCell.searchResult.drive { [weak self] search in
                     self?.viewModel.inputs.nameSearch(name: search)
                     self?.view.endEditing(true)
-                }.disposed(by: searchCell.disposeBag)
+                }.disposed(by: searchCell.rx.reuseBag)
             } else if let friendCell = cell as? FriendCell {
                 friendCell.transferButtonTap.drive { [weak self] fid in
                     print("transferButtonTap: \(fid)")
                     self?.view.endEditing(true)
-                }.disposed(by: friendCell.disposeBag)
+                }.disposed(by: friendCell.rx.reuseBag)
                 
                 friendCell.invitingButtonTap.drive { [weak self] fid in
                     print("invitingButtonTap: \(fid)")
                     self?.view.endEditing(true)
-                }.disposed(by: friendCell.disposeBag)
+                }.disposed(by: friendCell.rx.reuseBag)
                 
                 friendCell.moreButtonTap.drive { [weak self] fid in
                     print("moreButtonTap: \(fid)")
                     self?.view.endEditing(true)
-                }.disposed(by: friendCell.disposeBag)
+                }.disposed(by: friendCell.rx.reuseBag)
             } else if let invitationCell = cell as? InvitationsCell {
                 invitationCell.yesAction.drive { [weak self] fid in
                     print("yesAction: \(fid)")
                     self?.view.endEditing(true)
-                }.disposed(by: invitationCell.disposeBag)
+                }.disposed(by: invitationCell.rx.reuseBag)
                 
                 invitationCell.noAction.drive { [weak self] fid in
                     print("noAction: \(fid)")
                     self?.view.endEditing(true)
-                }.disposed(by: invitationCell.disposeBag)
+                }.disposed(by: invitationCell.rx.reuseBag)
             }
             
             return cell

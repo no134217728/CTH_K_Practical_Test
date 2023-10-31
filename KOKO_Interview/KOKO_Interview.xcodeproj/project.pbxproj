@@ -10,6 +10,7 @@
 		D256B4072AEF5DA800175B17 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256B4062AEF5DA800175B17 /* TabBarController.swift */; };
 		D256B4372AEF797700175B17 /* ButtonWithInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D256B4362AEF797700175B17 /* ButtonWithInfo.swift */; };
 		D25E280F2AF0A88200824D30 /* Shard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25E280E2AF0A88200824D30 /* Shard.swift */; };
+		D25E28112AF0E01400824D30 /* CellDisposeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25E28102AF0E01400824D30 /* CellDisposeExtension.swift */; };
 		D28B90632AE8B1C900AF8A0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B90622AE8B1C900AF8A0A /* AppDelegate.swift */; };
 		D28B90652AE8B1C900AF8A0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B90642AE8B1C900AF8A0A /* SceneDelegate.swift */; };
 		D28B90672AE8B1C900AF8A0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28B90662AE8B1C900AF8A0A /* ViewController.swift */; };
@@ -53,6 +54,7 @@
 		D25E27FE2AF0A7D000824D30 /* ConfigMock.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ConfigMock.xcconfig; sourceTree = "<group>"; };
 		D25E27FF2AF0A7D900824D30 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		D25E280E2AF0A88200824D30 /* Shard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shard.swift; sourceTree = "<group>"; };
+		D25E28102AF0E01400824D30 /* CellDisposeExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDisposeExtension.swift; sourceTree = "<group>"; };
 		D28B905F2AE8B1C900AF8A0A /* KOKO_Interview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KOKO_Interview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D28B90622AE8B1C900AF8A0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D28B90642AE8B1C900AF8A0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				D28B90642AE8B1C900AF8A0A /* SceneDelegate.swift */,
 				D2A8E82F2AE9FBCE00330218 /* APIRequest.swift */,
 				D25E280E2AF0A88200824D30 /* Shard.swift */,
+				D25E28102AF0E01400824D30 /* CellDisposeExtension.swift */,
 				D25E27FF2AF0A7D900824D30 /* Config.xcconfig */,
 				D25E27FE2AF0A7D000824D30 /* ConfigMock.xcconfig */,
 				D28B90D32AE9061E00AF8A0A /* MockJSON */,
@@ -321,6 +324,7 @@
 				D28B90B72AE8F76500AF8A0A /* BaseCell.swift in Sources */,
 				D256B4072AEF5DA800175B17 /* TabBarController.swift in Sources */,
 				D28B90E02AE9117600AF8A0A /* SearchCellModel.swift in Sources */,
+				D25E28112AF0E01400824D30 /* CellDisposeExtension.swift in Sources */,
 				D25E280F2AF0A88200824D30 /* Shard.swift in Sources */,
 				D28B90B82AE8F76500AF8A0A /* BaseViewController.swift in Sources */,
 				D28B90BC2AE8FBE600AF8A0A /* Models.swift in Sources */,
