@@ -11,78 +11,6 @@ import RxCocoa
 import SnapKit
 
 class FriendCell: BaseCell {
-    private lazy var containerView: UIView = {
-        let view = UIView()
-        
-        view.backgroundColor = .white
-        
-        return view
-    }()
-    
-    private lazy var starImage: UIImageView = {
-        let imageView = UIImageView()
-        
-        imageView.image = UIImage(named: "icFriendsStar")
-        
-        return imageView
-    }()
-    
-    private lazy var headerImage: UIImageView = {
-        let imageView = UIImageView()
-        
-        imageView.layer.cornerRadius = 20
-        imageView.clipsToBounds = true
-        
-        return imageView
-    }()
-    
-    private lazy var nameLabel: UILabel = {
-        let label = UILabel()
-        
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = UIColor(red: 71.0/255.0, green: 71.0/255.0, blue: 71.0/255.0, alpha: 1)
-        
-        return label
-    }()
-    
-    private lazy var transferButton: ButtonWithInfo = {
-        let button = ButtonWithInfo()
-        
-        button.setTitle("轉帳", for: .normal)
-        button.layer.borderWidth = 1.2
-        button.layer.borderColor = UIColor(red: 236.0/255.0, green: 0, blue: 140.0/255.0, alpha: 1).cgColor
-        button.setTitleColor(UIColor(red: 236.0/255.0, green: 0, blue: 140.0/255.0, alpha: 1), for: .normal)
-        
-        return button
-    }()
-    
-    private lazy var invitationButton: ButtonWithInfo = {
-        let button = ButtonWithInfo()
-        
-        button.setTitle("邀請中", for: .normal)
-        button.layer.borderWidth = 1.2
-        button.layer.borderColor = UIColor(red: 201.0/255.0, green: 201.0/255.0, blue: 201.0/255.0, alpha: 1).cgColor
-        button.setTitleColor(UIColor(red: 201.0/255.0, green: 201.0/255.0, blue: 201.0/255.0, alpha: 1), for: .normal)
-        
-        return button
-    }()
-    
-    private lazy var dotButton: ButtonWithInfo = {
-        let button = ButtonWithInfo()
-        
-        button.setImage(UIImage(named: "icFriendsMore"), for: .normal)
-        
-        return button
-    }()
-    
-    private lazy var bottomLine: UIView = {
-        let view = UIView()
-        
-        view.backgroundColor = UIColor(red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 1)
-        
-        return view
-    }()
-    
     var transferButtonTap: Driver<String> { transferButtonTapRelay.asDriver(onErrorJustReturn: "") }
     var invitingButtonTap: Driver<String> { invitingButtonTapRelay.asDriver(onErrorJustReturn: "") }
     var moreButtonTap: Driver<String> { moreButtonTapRelay.asDriver(onErrorJustReturn: "") }
@@ -93,6 +21,56 @@ class FriendCell: BaseCell {
     
     override func layoutSetup() {
         super.layoutSetup()
+        
+    }
+    
+    override func configureWith(cellModel: BaseCellModelProtocol) {
+        guard let cellModel = cellModel as? FriendCellModel else { return }
+        
+        lazy var containerView: UIView = {
+            let view = UIView()
+            
+            view.backgroundColor = .white
+            
+            return view
+        }()
+        
+        lazy var headerImage: UIImageView = {
+            let imageView = UIImageView()
+            
+            imageView.layer.cornerRadius = 20
+            imageView.clipsToBounds = true
+            
+            return imageView
+        }()
+        
+        lazy var nameLabel: UILabel = {
+            let label = UILabel()
+            
+            label.font = UIFont.systemFont(ofSize: 16)
+            label.textColor = UIColor(red: 71.0/255.0, green: 71.0/255.0, blue: 71.0/255.0, alpha: 1)
+            
+            return label
+        }()
+        
+        lazy var transferButton: ButtonWithInfo = {
+            let button = ButtonWithInfo()
+            
+            button.setTitle("轉帳", for: .normal)
+            button.layer.borderWidth = 1.2
+            button.layer.borderColor = UIColor(red: 236.0/255.0, green: 0, blue: 140.0/255.0, alpha: 1).cgColor
+            button.setTitleColor(UIColor(red: 236.0/255.0, green: 0, blue: 140.0/255.0, alpha: 1), for: .normal)
+            
+            return button
+        }()
+        
+        lazy var bottomLine: UIView = {
+            let view = UIView()
+            
+            view.backgroundColor = UIColor(red: 228.0/255.0, green: 228.0/255.0, blue: 228.0/255.0, alpha: 1)
+            
+            return view
+        }()
         
         contentView.addSubview(containerView)
         contentView.addSubview(bottomLine)
@@ -124,12 +102,42 @@ class FriendCell: BaseCell {
             $0.bottom.equalToSuperview()
             $0.height.equalTo(1)
         }
-    }
-    
-    override func configureWith(cellModel: BaseCellModelProtocol) {
-        guard let cellModel = cellModel as? FriendCellModel else { return }
         
         headerImage.image = UIImage(named: "imgFriendsList")
+        
+        lazy var starImage: UIImageView = {
+            let imageView = UIImageView()
+            
+            imageView.image = UIImage(named: "icFriendsStar")
+            
+            return imageView
+        }()
+        
+        lazy var invitationButton: ButtonWithInfo = {
+            let button = ButtonWithInfo()
+            
+            button.setTitle("邀請中", for: .normal)
+            button.layer.borderWidth = 1.2
+            button.layer.borderColor = UIColor(red: 201.0/255.0, 
+                                               green: 201.0/255.0,
+                                               blue: 201.0/255.0,
+                                               alpha: 1).cgColor
+            button.setTitleColor(UIColor(red: 201.0/255.0, 
+                                         green: 201.0/255.0,
+                                         blue: 201.0/255.0,
+                                         alpha: 1),
+                                 for: .normal)
+            
+            return button
+        }()
+        
+        lazy var dotButton: ButtonWithInfo = {
+            let button = ButtonWithInfo()
+            
+            button.setImage(UIImage(named: "icFriendsMore"), for: .normal)
+            
+            return button
+        }()
         
         if cellModel.friend.isTop {
             containerView.addSubview(starImage)
